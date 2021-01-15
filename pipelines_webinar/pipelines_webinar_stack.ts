@@ -48,7 +48,7 @@ export class PipelinesWebinarStack extends Stack {
     });
 
     apiUrlParam.grantRead(canary.role);
-    
+
     const failureAlarm = new cloudwatch.Alarm(this, 'CanaryAlarm', {
       metric: canary.metricSuccessPercent({
         period: Duration.minutes(1),
@@ -84,7 +84,7 @@ export class PipelinesWebinarStack extends Stack {
     preHookLambda.addToRolePolicy(new iam.PolicyStatement({
       resources: ['*'],
       actions: [
-        'synthetics:StartCanary', 
+        'synthetics:StartCanary',
         'synthetics:StopCanary'
     ],
     }));
@@ -92,11 +92,11 @@ export class PipelinesWebinarStack extends Stack {
     postHookLambda.addToRolePolicy(new iam.PolicyStatement({
       resources: ['*'],
       actions: [
-        'synthetics:StartCanary', 
+        'synthetics:StartCanary',
         'synthetics:StopCanary'
     ],
     }));
-    
+
     const lambdaDeploymentConfig = new codedeploy.CustomLambdaDeploymentConfig(this, 'CustomConfig', {
       type: codedeploy.CustomLambdaDeploymentConfigType.CANARY,
       interval: Duration.minutes(5),
@@ -111,7 +111,7 @@ export class PipelinesWebinarStack extends Stack {
       ],
       preHook: preHookLambda,
       postHook: postHookLambda
-    });    
+    });
 
     this.urlOutput = new CfnOutput(this, 'url', { value: api.url });
   }
