@@ -16,7 +16,7 @@ export class PipelineStack extends Stack {
             output: sourceArtifact,
             branch: 'typescript',
             oauthToken: SecretValue.secretsManager('github-token'),
-            owner: 'flochaz',
+            owner: 'AbdulYahya',
             repo: 'cdk-pipelines-demo',
         });
 
