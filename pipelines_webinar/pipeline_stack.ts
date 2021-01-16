@@ -14,10 +14,10 @@ export class PipelineStack extends Stack {
         const sourceAction = new cpa.GitHubSourceAction({
             actionName: 'GitHub',
             output: sourceArtifact,
-            branch: 'typescript',
             oauthToken: SecretValue.secretsManager('github-token'),
             owner: 'AbdulYahya',
             repo: 'cdk-pipelines-demo',
+            branch: 'typescript'
         });
 
         const synthAction = pipelines.SimpleSynthAction.standardNpmSynth({
