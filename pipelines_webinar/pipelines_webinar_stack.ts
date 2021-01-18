@@ -37,7 +37,7 @@ export class PipelinesWebinarStack extends Stack {
         code: synthetics.Code.fromAsset(path.join(__dirname, 'canary')),
         handler: 'apiCall.handler',
       }),
-      runtime: synthetics.Runtime.SYNTHETICS_NODEJS_2_2,
+      runtime: synthetics.Runtime.SYNTHETICS_NODEJS_2_0,
       startAfterCreation: false
     });
 
