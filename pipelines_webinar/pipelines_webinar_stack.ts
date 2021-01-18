@@ -18,7 +18,7 @@ export class PipelinesWebinarStack extends Stack {
     const handler = new lambda.Function(this, 'Handler', {
       code: new lambda.AssetCode(path.resolve(__dirname, 'lambda')),
       handler: 'handler.handler',
-      runtime: lambda.Runtime.NODEJS_12_X,
+      runtime: lambda.Runtime.NODEJS_10_X,
     });
 
     const alias = new lambda.Alias(this, 'x', {
@@ -62,7 +62,7 @@ export class PipelinesWebinarStack extends Stack {
     // TODO: Add stage to function name to avoid collision with stages
     const preHookLambda = new lambda.Function(this, 'startCanary', {
       functionName: `CodeDeployHook_Pre-${this.stackName}`,
-      runtime: lambda.Runtime.NODEJS_12_X,
+      runtime: lambda.Runtime.NODEJS_10_X,
       handler: 'canaryController.startCanary',
       code: lambda.Code.fromAsset(path.join(__dirname, 'canary')),
       environment: {
@@ -73,7 +73,7 @@ export class PipelinesWebinarStack extends Stack {
 
     const postHookLambda = new lambda.Function(this, 'stopCanary', {
       functionName: `CodeDeployHook_Post-${this.stackName}`,
-      runtime: lambda.Runtime.NODEJS_12_X,
+      runtime: lambda.Runtime.NODEJS_10_X,
       handler: 'canaryController.stopCanary',
       code: lambda.Code.fromAsset(path.join(__dirname, 'canary')),
       environment: {
