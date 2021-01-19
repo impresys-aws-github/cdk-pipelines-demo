@@ -23,14 +23,13 @@ export class PipelineStack extends Stack {
         const synthAction = pipelines.SimpleSynthAction.standardNpmSynth({
             sourceArtifact,
             cloudAssemblyArtifact,
-            buildCommand: 'npm run build && npm test'
+            buildCommand: 'npm run build && npm test',
         });
 
         const pipeline = new pipelines.CdkPipeline(this, 'Pipeline', {
             cloudAssemblyArtifact,
             sourceAction,
-            synthAction,
-            selfMutating: true
+            synthAction
         });
 
         // Pre-prod
