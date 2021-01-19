@@ -1,3 +1,4 @@
+
 import { Construct, SecretValue, Stack, StackProps } from '@aws-cdk/core';
 import * as cp from '@aws-cdk/aws-codepipeline';
 import * as cpa from '@aws-cdk/aws-codepipeline-actions';
@@ -23,13 +24,14 @@ export class PipelineStack extends Stack {
         const synthAction = pipelines.SimpleSynthAction.standardNpmSynth({
             sourceArtifact,
             cloudAssemblyArtifact,
-            buildCommand: 'npm run build && npm test',
+            buildCommand: 'npm run build && npm test'
         });
 
         const pipeline = new pipelines.CdkPipeline(this, 'Pipeline', {
             cloudAssemblyArtifact,
             sourceAction,
-            synthAction
+            synthAction,
+            selfMutating: true
         });
 
         // Pre-prod
