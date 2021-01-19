@@ -18,7 +18,7 @@ exports.startCanary = async (event: any) => {
             result = 'Failed';
         }
     }
-    
+
     const params = {
         deploymentId: event.DeploymentId,
         lifecycleEventHookExecutionId: event.LifecycleEventHookExecutionId,
